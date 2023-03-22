@@ -12,10 +12,6 @@ import 'regenerator-runtime/runtime';
 
 const { mark, async } = require('regenerator-runtime');
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
-
 const controlRecipes = async function () {
   try {
     const id = window.location.hash.slice(1);
@@ -28,7 +24,6 @@ const controlRecipes = async function () {
 
     // 2) Updating the bookmarks view
     bookmarksView.update(model.state.bookmarks);
-    // bookmarksView.render(model.state.bookmarks);
 
     // 3) Loading Recipe
     await model.loadRecipe(id);
@@ -52,7 +47,6 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // 3) Render results
-    // resultsView.render(model.state.search.results);
     resultsView.render(model.getSearchResultsPage());
 
     // 4) Render initial pagination button:
@@ -64,7 +58,6 @@ const controlSearchResults = async function () {
 
 const controlPagination = function (goToPage) {
   // 1) Render NEW results
-  // resultsView.render(model.state.search.results);
   resultsView.render(model.getSearchResultsPage(goToPage));
 
   // 2) Render initial pagination button:
@@ -76,7 +69,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view
-  // recipeView.render(model.state.recipe);
   recipeView.update(model.state.recipe);
 };
 
@@ -137,8 +129,6 @@ const init = function () {
   addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();
-// window.addEventListener('hashchange', controlRecipes);
-// window.addEventListener('load', controlRecipes);
 
 /////////////////////////////////////////////////
 /*
